@@ -16,10 +16,13 @@ export const getItems = () => {
   return request(`${baseUrl}/items`, { headers });
 };
 
-export const addItem = ({ name, imageUrl, weather }) => {
+export const addItem = ({ name, imageUrl, weather, token }) => {
   return request(`${baseUrl}/items`, {
     method: "POST",
-    headers,
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name,
       imageUrl,
@@ -28,9 +31,46 @@ export const addItem = ({ name, imageUrl, weather }) => {
   });
 };
 
-export const removeItem = (itemId) => {
+export const removeItem = (itemId, token) => {
   return request(`${baseUrl}/items/${itemId}`, {
     method: "DELETE",
-    headers,
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const likeItem = (itemId, token) => {
+  return request(`${baseUrl}/items/${itemId}/likes`, {
+    method: "PUT",
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const unlikeItem = (itemId, token) => {
+  return request(`${baseUrl}/items/${itemId}/likes`, {
+    method: "DELETE",
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const editProfile = ({ name, avatar, token }) => {
+  return request(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      ...headers,
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
   });
 };

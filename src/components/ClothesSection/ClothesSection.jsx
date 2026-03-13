@@ -1,16 +1,24 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 export default function ClothesSection({
   clothingItems,
   handleCardClick,
   handleAddClick,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const itemAddButtonClassName = `clothes-section__add ${
+    currentUser ? "" : "clothes-section__add_disabled"
+  }`;
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__row">
         <p>Your Items</p>
-        <button onClick={handleAddClick} className="clothes-section__add">
+        <button onClick={handleAddClick} className={itemAddButtonClassName}>
           + Add new
         </button>
       </div>
