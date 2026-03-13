@@ -1,7 +1,12 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
-const LoginModal = ({ isOpen, handleCloseModal, handleSubmit }) => {
+const LoginModal = ({
+  isOpen,
+  handleCloseModal,
+  handleSubmit,
+  handleSwitchToRegister,
+}) => {
   return (
     <div className="login-modal">
       <ModalWithForm
@@ -38,7 +43,11 @@ const LoginModal = ({ isOpen, handleCloseModal, handleSubmit }) => {
             maxLength="30"
           />
         </label>
-        <button type="button" className="modal__register-btn">
+        <button
+          type="button"
+          className="modal__register-btn"
+          onClick={handleSwitchToRegister}
+        >
           Or Register
         </button>
       </ModalWithForm>

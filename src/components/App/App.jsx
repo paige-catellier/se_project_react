@@ -255,13 +255,15 @@ function App() {
             handleSignInClick={handleSignUpClick}
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "register"}
-            onSubmit={handleRegistration}
+            handleSubmit={handleRegistration}
+            handleSwitchToLogin={handleLogInClick}
           />
           <LoginModal
             handleLogInClick={handleLogInClick}
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "login"}
-            onSubmit={handleLogIn}
+            handleSubmit={handleLogIn}
+            handleSwitchToRegister={handleSignUpClick}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>
