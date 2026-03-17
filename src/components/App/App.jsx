@@ -8,6 +8,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import ProtectedRoute from "../../utils/ProtectedRoute";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { addItem, getItems, removeItem } from "../../utils/api";
@@ -179,6 +180,23 @@ function App() {
       });
   };
 
+  const handleEditProfile = ({ name, avatar }) => {
+    setIsLoading(true);
+    const token = localStorage.getItem("jwt");
+
+    updateUser({ name, avatar }, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error("Profile update failed:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -231,6 +249,13 @@ function App() {
                       clothingItems={clothingItems}
                       onEditProfileClick={handleEditProfileClick}
                       onLogOutClick={handleLogOutClick}
+                    />
+                    <EditProfileModal
+                      isOpen={activeModal === "edit-profile"}
+                      handleCloseModal={handleCloseModal}
+                      handleSubmit={handleEditProfile}
+                      currentUser={currentUser}
+                      isLoading={isLoading}
                     />
                   </ProtectedRoute>
                 }

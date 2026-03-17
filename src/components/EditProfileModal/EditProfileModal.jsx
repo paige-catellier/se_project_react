@@ -3,9 +3,8 @@ import "./EditProfileModal.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-const currentUser = useContext(CurrentUserContext);
-
 const EditProfileModal = ({ isOpen, handleCloseModal, handleSubmit }) => {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <ModalWithForm
       title="Edit Profile"

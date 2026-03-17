@@ -4,10 +4,12 @@ function ModalWithForm({
   title,
   name,
   buttonText = "Add Garment",
+  loadingText = "Saving...",
   handleCloseModal,
   isOpen,
   handleSubmit,
   children,
+  isLoading,
 }) {
   return (
     <div className={`modal modal_type_${name} ${isOpen && "modal_opened"}`}>
@@ -20,8 +22,8 @@ function ModalWithForm({
         ></button>
         <form onSubmit={handleSubmit} name={name} className="modal__form">
           {children}
-          <button type="submit" className="modal__submit">
-            {buttonText}
+          <button type="submit" className="modal__submit" disabled={isLoading}>
+            {isLoading ? loadingText : buttonText}
           </button>
         </form>
       </div>
