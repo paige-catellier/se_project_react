@@ -1,4 +1,5 @@
 const baseUrl = "http://localhost:3001";
+import { handleServerResponse } from "./api";
 
 export const register = ({ email, password, name, avatar }) => {
   return fetch(`${baseUrl}/signup`, {
@@ -12,12 +13,7 @@ export const register = ({ email, password, name, avatar }) => {
       name,
       avatar,
     }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(handleServerResponse);
 };
 
 export const authorize = ({ email, password }) => {
@@ -30,12 +26,7 @@ export const authorize = ({ email, password }) => {
       email,
       password,
     }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(handleServerResponse);
 };
 
 export const updateUser = ({ name, avatar }, token) => {
@@ -49,12 +40,7 @@ export const updateUser = ({ name, avatar }, token) => {
       name,
       avatar,
     }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(handleServerResponse);
 };
 
 export const checkToken = (token) => {
@@ -64,10 +50,5 @@ export const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(handleServerResponse);
 };

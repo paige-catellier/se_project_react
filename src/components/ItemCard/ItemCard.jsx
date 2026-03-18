@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 function ItemCard({ item, onClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
+  const isLoggedIn = currentUser && currentUser._id;
   const handleCardClick = () => {
     onClick(item);
   };
@@ -25,11 +26,13 @@ function ItemCard({ item, onClick, onCardLike }) {
         alt={item.name}
         className="card__image"
       />
-      <button
-        className={itemLikeButtonClassName}
-        type="button"
-        onClick={handleLike}
-      ></button>
+      {isLoggedIn && (
+        <button
+          className={itemLikeButtonClassName}
+          type="button"
+          onClick={handleLike}
+        ></button>
+      )}
     </li>
   );
 }

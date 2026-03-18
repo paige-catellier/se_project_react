@@ -1,6 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 import { useState } from "react";
+import { useForm } from "../../hooks/useForm";
 
 const RegisterModal = ({
   isOpen,
@@ -8,21 +9,12 @@ const RegisterModal = ({
   handleSubmit,
   handleSwitchToLogin,
 }) => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-    name: "",
-    avatarUrl: "",
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const defaultValues = { email: "", password: "", name: "", avatar: "" };
+  const { values, handleChange } = useForm(defaultValues);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    handleSubmit(formData);
+    handleSubmit(values);
   };
 
   return (
@@ -46,8 +38,8 @@ const RegisterModal = ({
             required
             minLength="1"
             maxLength="30"
-            value={formData.email}
-            onChange={handleInputChange}
+            value={values.email}
+            onChange={handleChange}
           />
         </label>
         <label className="modal__label">
@@ -61,8 +53,8 @@ const RegisterModal = ({
             required
             minLength="1"
             maxLength="30"
-            value={formData.password}
-            onChange={handleInputChange}
+            value={values.password}
+            onChange={handleChange}
           />
         </label>
         <label className="modal__label">
@@ -76,20 +68,20 @@ const RegisterModal = ({
             required
             minLength="1"
             maxLength="30"
-            value={formData.name}
-            onChange={handleInputChange}
+            value={values.name}
+            onChange={handleChange}
           />
         </label>
         <label className="modal__label modal__label_type_avatar-url">
           Avatar URL
           <input
             type="url"
-            name="avatarUrl"
-            id="avatarUrl"
+            name="avatar"
+            id="avatar"
             className="modal__input modal__input_type_avatar-url"
             placeholder="Avatar URL"
-            value={formData.avatar}
-            onChange={handleInputChange}
+            value={values.avatar}
+            onChange={handleChange}
           />
         </label>
         <button

@@ -160,7 +160,9 @@ function App() {
       .then((res) => {
         setCurrentUser(res.user);
         handleCloseModal();
-        handleLogIn({ email, password });
+        setTimeout(() => {
+          handleLogIn({ email, password });
+        }, 500);
       })
       .catch((err) => {
         console.error("Registration failed:", err);
@@ -224,7 +226,6 @@ function App() {
               weatherData={weatherData}
               handleSignUpClick={handleSignUpClick}
               handleLogInClick={handleLogInClick}
-              currentUser={currentUser}
             />
             <Routes>
               <Route
@@ -243,7 +244,6 @@ function App() {
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
-                      currentUser={currentUser}
                       handleAddClick={handleAddClick}
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
@@ -254,7 +254,6 @@ function App() {
                       isOpen={activeModal === "edit-profile"}
                       handleCloseModal={handleCloseModal}
                       handleSubmit={handleEditProfile}
-                      currentUser={currentUser}
                       isLoading={isLoading}
                     />
                   </ProtectedRoute>

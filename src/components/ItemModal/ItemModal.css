@@ -41,6 +41,10 @@
   cursor: pointer;
 }
 
+.modal__delete-btn_hidden {
+  visibility: hidden;
+}
+
 .modal__footer_text {
   display: flex;
   flex-direction: column;

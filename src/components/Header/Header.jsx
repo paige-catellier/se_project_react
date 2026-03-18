@@ -1,22 +1,21 @@
 import "./Header.css";
 import logo from "../../images/logo.svg";
-//import Avatar from "../../images/avatar.png";
+import { useContext } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { NavLink } from "react-router-dom";
-//todo: create placeholder for user name's first letter in a circle if no avatar is uploaded.
 
 function Header({
   handleAddClick,
   weatherData,
   handleSignUpClick,
   handleLogInClick,
-  currentUser,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
