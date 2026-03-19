@@ -10,6 +10,7 @@ function Header({
   weatherData,
   handleSignUpClick,
   handleLogInClick,
+  isLoggedIn,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -27,32 +28,36 @@ function Header({
           {currentDate}, {weatherData.city}
         </p>
         <ToggleSwitch />
-        {currentUser && (
-          <button
-            onClick={handleAddClick}
-            type="button"
-            className="header__add-clothes-btn"
-          >
-            {" "}
-            + Add Clothes
-          </button>
+        {currentUser && isLoggedIn ? (
+          <div>
+            <button
+              onClick={handleAddClick}
+              type="button"
+              className="header__add-clothes-btn"
+            >
+              {" "}
+              + Add Clothes
+            </button>
+            <p>avatar</p>
+          </div>
+        ) : (
+          <div className="header__user-container">
+            <button
+              type="button"
+              className="header__signup"
+              onClick={handleSignUpClick}
+            >
+              Sign Up
+            </button>
+            <button
+              type="button"
+              className="header__signin"
+              onClick={handleLogInClick}
+            >
+              Log In
+            </button>
+          </div>
         )}
-        <div className="header__user-container">
-          <button
-            type="button"
-            className="header__signup"
-            onClick={handleSignUpClick}
-          >
-            Sign Up
-          </button>
-          <button
-            type="button"
-            className="header__signin"
-            onClick={handleLogInClick}
-          >
-            Log In
-          </button>
-        </div>
       </header>
     </CurrentUserContext.Provider>
   );

@@ -158,11 +158,10 @@ function App() {
   const handleRegistration = ({ email, password, name, avatar }) => {
     register({ email, password, name, avatar })
       .then((res) => {
-        setCurrentUser(res.user);
-        handleCloseModal();
-        setTimeout(() => {
+        if (res.email) {
           handleLogIn({ email, password });
-        }, 500);
+          handleCloseModal();
+        }
       })
       .catch((err) => {
         console.error("Registration failed:", err);
@@ -172,10 +171,14 @@ function App() {
   const handleLogIn = ({ email, password }) => {
     authorize({ email, password })
       .then((res) => {
-        localStorage.setItem("jwt", res.token);
-        handleCloseModal();
-        setIsLoggedIn(true);
-        setCurrentUser(res.user);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          checkToken(res.token).then((res) => {
+            setIsLoggedIn(true);
+            setCurrentUser(res);
+            handleCloseModal();
+          });
+        }
       })
       .catch((err) => {
         console.error("Login failed:", err);
@@ -214,6 +217,8 @@ function App() {
     }
   }, []);
 
+  console.log(isLoggedIn);
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <CurrentTemperatureUnitContext.Provider
@@ -226,6 +231,7 @@ function App() {
               weatherData={weatherData}
               handleSignUpClick={handleSignUpClick}
               handleLogInClick={handleLogInClick}
+              isLoggedIn={isLoggedIn}
             />
             <Routes>
               <Route
