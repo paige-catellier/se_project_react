@@ -113,7 +113,7 @@ function App() {
       weather: inputValues.weather,
     };
     const token = localStorage.getItem("jwt");
-    addItem(newCardData, token)
+    addItem({ ...newCardData, token })
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
         handleCloseModal();
@@ -216,8 +216,6 @@ function App() {
         });
     }
   }, []);
-
-  console.log(isLoggedIn);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

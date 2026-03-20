@@ -19,7 +19,7 @@
   bottom: 11px;
   padding: 0;
 }
-
+/* 
 .modal__submit {
   border-radius: 4px;
   background-color: #0000004d;
@@ -33,7 +33,7 @@
   cursor: pointer;
   position: relative;
   bottom: 55px;
-}
+} */
 
 .modal__submit:hover {
   background-color: #000000;

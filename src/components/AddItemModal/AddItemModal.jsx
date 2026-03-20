@@ -1,4 +1,5 @@
 import { useForm } from "../../hooks/useForm";
+import "./AddItemModal.css";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -15,7 +16,7 @@ const AddItemModal = ({ isOpen, onAddItem, handleCloseModal, isLoading }) => {
     <ModalWithForm
       title="New garment"
       name="new-card"
-      buttonText={isLoading ? "Saving..." : "Save"}
+      buttonText={isLoading ? "Saving..." : "Add Garment"}
       handleCloseModal={handleCloseModal}
       handleSubmit={handleSubmit}
       isOpen={isOpen}

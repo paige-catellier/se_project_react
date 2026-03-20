@@ -4,6 +4,7 @@ import { useContext } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { NavLink } from "react-router-dom";
+import Avatar from "../../images/avatar.png";
 
 function Header({
   handleAddClick,
@@ -29,7 +30,7 @@ function Header({
         </p>
         <ToggleSwitch />
         {currentUser && isLoggedIn ? (
-          <div>
+          <div className="header__avatar-container">
             <button
               onClick={handleAddClick}
               type="button"
@@ -38,7 +39,14 @@ function Header({
               {" "}
               + Add Clothes
             </button>
-            <p>avatar</p>
+            <NavLink to="/profile" className="header__user-info">
+              <p className="header__username">Terrance Tegegne</p>
+              <img
+                src={Avatar}
+                alt="Terrance Tegegne"
+                className="header__avatar"
+              />
+            </NavLink>
           </div>
         ) : (
           <div className="header__user-container">

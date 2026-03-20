@@ -11,17 +11,23 @@ export default function Profile({
 }) {
   return (
     <section className="profile">
-      <SideBar />
-      <button
-        type="button"
-        className="profile__edit-button"
-        onClick={onEditProfileClick}
-      >
-        Edit Profile
-      </button>
-      <button type="button" className="profile_logout" onClick={onLogOutClick}>
-        Log Out
-      </button>
+      <div className="profile__action-buttons">
+        <SideBar />
+        <button
+          type="button"
+          className="profile__edit-button"
+          onClick={onEditProfileClick}
+        >
+          Change Profile Data
+        </button>
+        <button
+          type="button"
+          className="profile__logout"
+          onClick={onLogOutClick}
+        >
+          Log Out
+        </button>
+      </div>
       <ClothesSection
         handleCardClick={handleCardClick}
         clothingItems={clothingItems}

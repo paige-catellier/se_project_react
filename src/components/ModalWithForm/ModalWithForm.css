@@ -23,22 +23,6 @@
   font-size: 16px;
 }
 
-.modal__close {
-  position: absolute;
-  top: 20px;
-  right: 28px;
-  background-image: url(../../images/close-btn.svg);
-  width: 20px;
-  height: 20px;
-  border: none;
-  background-color: transparent;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 0px;
-  cursor: pointer;
-}
-
 .modal__submit {
   border-radius: 4px;
   border: none;
@@ -54,6 +38,22 @@
 
 .modal__submit:hover {
   background-color: #00000099;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  background-image: url(../../images/close-btn.svg);
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0px;
+  cursor: pointer;
 }
 
 .modal__content {
