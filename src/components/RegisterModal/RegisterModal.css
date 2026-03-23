@@ -19,7 +19,7 @@
   padding: 0;
 }
 
-.modal__submit {
+.modal__submit .modal__submit_register {
   border-radius: 4px;
   background-color: #0000004d;
   border: none;

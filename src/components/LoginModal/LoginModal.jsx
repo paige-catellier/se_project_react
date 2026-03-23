@@ -22,9 +22,11 @@ const LoginModal = ({
         title="Log In"
         name="login"
         buttonText="Log In"
+        secondButtonText={"Or Register"}
         handleCloseModal={handleCloseModal}
         handleSubmit={handleFormSubmit}
         isOpen={isOpen}
+        handleSwitch={handleSwitchToRegister}
       >
         <label className="modal__label">
           Email
@@ -56,13 +58,6 @@ const LoginModal = ({
             onChange={handleChange}
           />
         </label>
-        <button
-          type="button"
-          className="modal__register-btn"
-          onClick={handleSwitchToRegister}
-        >
-          Or Register
-        </button>
       </ModalWithForm>
     </div>
   );

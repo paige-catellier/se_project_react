@@ -11,7 +11,13 @@ import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import ProtectedRoute from "../../utils/ProtectedRoute";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import { addItem, getItems, removeItem } from "../../utils/api";
+import {
+  addItem,
+  getItems,
+  likeItem,
+  unlikeItem,
+  removeItem,
+} from "../../utils/api";
 import { coordinates, apiKey } from "../../utils/constants";
 import { register, authorize, checkToken } from "../../utils/auth";
 import Footer from "../Footer/Footer";
@@ -58,6 +64,7 @@ function App() {
   };
 
   const handleCardClick = (card) => {
+    console.log("Card clicked:", card);
     setActiveModal("preview");
     setSelectedCard(card);
   };
@@ -69,16 +76,14 @@ function App() {
   const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
     !isLiked
-      ? api
-          .addCardLike(id, token)
+      ? likeItem(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
           .catch(console.error)
-      : api
-          .removeCardLike(id, token)
+      : unlikeItem(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
@@ -240,6 +245,7 @@ function App() {
                     clothingItems={clothingItems}
                     handleCardClick={handleCardClick}
                     onCardClick={handleCardLike}
+                    handleCardLike={handleCardLike}
                   />
                 }
               />
@@ -250,6 +256,7 @@ function App() {
                     <Profile
                       handleAddClick={handleAddClick}
                       handleCardClick={handleCardClick}
+                      handleCardLike={handleCardLike}
                       clothingItems={clothingItems}
                       onEditProfileClick={handleEditProfileClick}
                       onLogOutClick={handleLogOutClick}
@@ -278,6 +285,7 @@ function App() {
             handleCloseModal={handleCloseModal}
             handleDeleteCard={handleDeleteCard}
             isLoading={isLoading}
+            onCardClick={handleCardClick}
           />
           <RegisterModal
             handleSignInClick={handleSignUpClick}
