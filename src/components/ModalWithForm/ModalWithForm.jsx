@@ -24,7 +24,11 @@ function ModalWithForm({
         ></button>
         <form onSubmit={handleSubmit} name={name} className="modal__form">
           {children}
-          <button type="submit" className="modal__submit" disabled={isLoading}>
+          <button
+            type="submit"
+            className={`modal__submit modal__submit_${name}`}
+            disabled={isLoading}
+          >
             {isLoading ? loadingText : buttonText}
           </button>
           {secondButtonText && (
