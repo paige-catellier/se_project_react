@@ -60,17 +60,3 @@ export const unlikeItem = (itemId, token) => {
     },
   });
 };
-
-export const editProfile = ({ name, avatar, token }) => {
-  return request(`${baseUrl}/users/me`, {
-    method: "PATCH",
-    headers: {
-      ...headers,
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      name,
-      avatar,
-    }),
-  });
-};

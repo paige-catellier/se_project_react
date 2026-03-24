@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import Header from "../Header/Header";
 import Profile from "../Profile/Profile";
@@ -9,7 +11,9 @@ import ItemModal from "../ItemModal/ItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import ProtectedRoute from "../../utils/ProtectedRoute";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Footer from "../Footer/Footer";
+
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import {
   addItem,
@@ -19,11 +23,10 @@ import {
   removeItem,
 } from "../../utils/api";
 import { coordinates, apiKey } from "../../utils/constants";
-import { register, authorize, checkToken } from "../../utils/auth";
-import Footer from "../Footer/Footer";
+import { register, authorize, checkToken, updateUser } from "../../utils/auth";
+
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -164,8 +167,7 @@ function App() {
     register({ email, password, name, avatar })
       .then((res) => {
         if (res.email) {
-          handleLogIn({ email, password });
-          handleCloseModal();
+          return handleLogIn({ email, password });
         }
       })
       .catch((err) => {

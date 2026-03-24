@@ -62,7 +62,7 @@ const RegisterModal = ({
         <label className="modal__label">
           Name
           <input
-            type="name"
+            type="text"
             name="name"
             id="nameSignUp"
             className="modal__input modal__input_type_name_sign-up"

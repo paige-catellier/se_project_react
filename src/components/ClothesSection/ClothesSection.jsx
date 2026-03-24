@@ -24,16 +24,18 @@ export default function ClothesSection({
         </button>
       </div>
       <ul className="clothes-section__list">
-        {clothingItems.map((item) => {
-          return (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onCardClick={handleCardClick}
-              onCardLike={handleCardLike}
-            />
-          );
-        })}
+        {clothingItems
+          .filter((item) => item.owner === currentUser._id)
+          .map((item) => {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+              />
+            );
+          })}
       </ul>
     </div>
   );
