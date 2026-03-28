@@ -1,4 +1,7 @@
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwrproject.crabdance.com"
+    : "http://localhost:3001";
 import { handleServerResponse } from "./api";
 
 export const register = ({ email, password, name, avatar }) => {
